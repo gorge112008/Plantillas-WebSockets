@@ -1,0 +1,68 @@
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col m3">
+          <div class="row"><h3>Ingresa un producto</h3></div>
+          <div class="row">
+            <form method="POST" action="#" name="formulario" class="col s12">
+              <div class="row">
+                <div class="input-field col s6">
+                  <input
+                    id="tittle"
+                    type="text"
+                    class="validate"
+                    required
+                  />
+                  <label for="tittle">Tittle</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input
+                    id="description"
+                    type="text"
+                    class="validate"
+                    required
+                  />
+                  <label for="description">Description</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="code" type="number" class="validate" required/>
+                  <label for="code">Code</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="price" type="number" class="validate" required/>
+                  <label for="price">Price</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="stock" type="number" class="validate" required/>
+                  <label for="stock">Stock</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <label for="thumbnail">Thumbnail</label>
+                  <input id="thumbnail" type="text" class="validate" />
+                </div>
+              </div>
+              <input type="submit" id="btnGuardar" class="btnGuardar" value="Guardar">
+              </div>
+            </form>
+          </div>
+          <div class="col s4 m7" id="contenedor">
+            <!-- Contenido dinamico -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.24/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/home.js"></script>
