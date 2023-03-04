@@ -1,8 +1,8 @@
 const express = require("express");
 const handlebars = require("express-handlebars");
-const { routerProducts } = require("./products");
-const { productManager } = require("./ProductManager.js");
-const { routerCarts } = require("./carts");
+const { routerProducts } = require("./routes/products");
+const { productManager } = require("./routes/ProductManager.js");
+const { routerCarts } = require("./routes/carts");
 const { Server } = require("socket.io");
 
 
