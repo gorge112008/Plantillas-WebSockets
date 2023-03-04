@@ -1,68 +1,46 @@
 [
-  {
-    "tittle": "Burger",
-    "description": "Meat Hamburger",
-    "code": 1,
-    "price": 10,
-    "status": true,
-    "stock": 20,
-    "category": "Food",
-    "thumbnail": "https://decomidaperuana.com/wp-content/uploads/2020/10/hamburguesa-casera.jpg",
-    "id": 3
-  },
-  {
-    "tittle": "Pizza",
-    "description": "Meat Pizza",
-    "code": 2,
-    "price": 400,
-    "status": true,
-    "stock": 15,
-    "category": "Food",
-    "thumbnail": "https://cocina-casera.com/wp-content/uploads/2011/12/pizaa-carne-receta.jpg",
-    "id": 4
-  },
-  {
-    "tittle": "Mayonesa",
-    "description": "Alacena",
-    "code": 86,
-    "price": 43,
-    "status": true,
-    "stock": 53,
-    "category": "Food",
-    "thumbnail": "https://finvero.com/assets/img/shoppers/products/Not_found.png ",
-    "id": 6
-  },
-  {
-    "tittle": "Burger",
-    "description": "Meat Hamburger",
-    "code": 34,
-    "price": 10,
-    "status": true,
-    "stock": 20,
-    "category": "Food",
-    "thumbnail": "https://decomidaperuana.com/wp-content/uploads/2020/10/hamburguesa-casera.jpg",
-    "id": 8
-  },
-  {
-    "tittle": "JORGE",
-    "description": "PACO",
-    "code": 3,
-    "status": true,
-    "stock": 1,
-    "category": "Food",
-    "price": 1,
-    "thumbnail": "",
-    "id": 9
-  },
-  {
-    "tittle": "asd",
-    "description": "1",
-    "code": 4,
-    "status": true,
-    "stock": 1,
-    "category": "Food",
-    "price": 2,
-    "thumbnail": "",
-    "id": 10
-  }
+    {
+        "tittle": "Burger",
+        "description": "Meat Hamburger",
+        "code": 1,
+        "price": 10,
+        "status": true,
+        "stock": 20,
+        "category": "Food",
+        "thumbnail": "https://decomidaperuana.com/wp-content/uploads/2020/10/hamburguesa-casera.jpg",
+        "id": 3
+    },
+    {
+        "tittle": "Pizza",
+        "description": "Meat Pizza",
+        "code": 2,
+        "price": 400,
+        "status": true,
+        "stock": 15,
+        "category": "Food",
+        "thumbnail": "https://cocina-casera.com/wp-content/uploads/2011/12/pizaa-carne-receta.jpg",
+        "id": 4
+    },
+    {
+        "tittle": "Mayonesa",
+        "description": "Alacena",
+        "code": 86,
+        "price": 43,
+        "status": true,
+        "stock": 53,
+        "category": "Food",
+        "thumbnail": "https://finvero.com/assets/img/shoppers/products/Not_found.png ",
+        "id": 6
+    },
+    {
+        "tittle": "Burger",
+        "description": "Meat Hamburger",
+        "code": 34,
+        "price": 10,
+        "status": true,
+        "stock": 20,
+        "category": "Food",
+        "thumbnail": "https://decomidaperuana.com/wp-content/uploads/2020/10/hamburguesa-casera.jpg",
+        "id": 8
+    }
 ]

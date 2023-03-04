@@ -20,7 +20,55 @@ img{
     font-size: 150% !important;
 }
 
+.tittle-index{
+    border: solid red 3px;
+    text-align: center;
+    margin-bottom: 100px;
+}
 
+#Static{
+    height: 100px;
+    background-color: aquamarine;
+    color: black;
+    display: block;
+    position:static;
+  margin:auto;
+  top: 0;bottom:0;left:0;right:0;
+}
+#Static:hover{
+    border:solid black 2px;
+   color: blue;
+}
+#Dinamic{
+    height: 100px;
+    background-color:pink;
+    color: black;
+    display: block;
+    position:static;
+  margin:auto;
+  top: 0;bottom:0;left:0;right:0;
+}
+#Dinamic:hover{
+    border:solid black 2px;
+   color: blue;
+}
+.contain-return{
+    margin-bottom: 20px;
+}
+#return{
+    background-color:royalblue;
+    color: black;
+    border-radius: 25px;
+    border: solid 2px black;
+    display: block;
+    position:static;
+  margin:auto;
+  top: 0;bottom:0;left:0;right:0;
+
+}
+#return:hover{
+   color: white;
+}
 .btnGuardar {
     white-space: normal;
     background: rgb(54, 156, 127);

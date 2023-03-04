@@ -5,6 +5,7 @@ const { productManager } = require("./ProductManager.js");
 const { routerCarts } = require("./carts");
 const { Server } = require("socket.io");
 
+
 const app = express();
 
 const port = 8080;
@@ -31,6 +32,10 @@ app.engine("handlebars", handlebars.engine());
 app.set("view engine", "handlebars");
 app.set("views", __dirname + "/views");
 app.use(express.static(__dirname + "/public"));
+
+app.get("/", (req, res) => {
+  res.render("index", {});
+});
 
 app.get("/home", (req, res) => {
   let response = productManager.getProducts();
