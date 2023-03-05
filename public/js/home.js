@@ -110,6 +110,9 @@ async function deleteData(url, id) {
     let clave = url + id;
     let response = await fetch(clave, {
       method: "DELETE",
+      "Access-Control-Allow-Origin" : "*", 
+      "Access-Control-Allow-Credentials" : true ,
+      mode: 'cors',
     });
     return response.json();
   } catch {
@@ -124,6 +127,9 @@ async function postData(url, data) {
       headers: {
         "Content-Type": "application/json",
       },
+      "Access-Control-Allow-Origin" : "*", 
+      "Access-Control-Allow-Credentials" : true ,
+      mode: 'cors',
       body: JSON.stringify(data),
     });
     if (response.status == 400) {
