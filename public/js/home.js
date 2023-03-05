@@ -43,7 +43,6 @@ socket.on("products", (getProducts) => {
                 .catch((error) => console.log("Error:" + error));
             } else if (result.isDenied) {
               Swal.fire("ACTION CANCELED", "", "info");
-              //selectBtn.className = "btn";
             }
           });
         }

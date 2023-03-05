@@ -38,7 +38,6 @@ app.get("/", (req, res) => {
 
 app.get("/home", (req, res) => {
   let response =  initProducts();
-  console.log(response);
   res.render("home", { response });
 });
 
