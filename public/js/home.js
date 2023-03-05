@@ -141,11 +141,13 @@ async function postData(url, data) {
 socket.on("f5NewProduct", (newProduct) => {
   storeProducts.push(newProduct);
   crearHtml();
+  socket.emit("inicializar","Inicio");
 });
 
 socket.on("f5deleteProduct", (deleteProduct) => {
   storeProducts.splice(deleteProduct, 1);
   crearHtml();
+  socket.emit("inicializar","Inicio");
 });
 
 form.addEventListener("submit", (e) => {

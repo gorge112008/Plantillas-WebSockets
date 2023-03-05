@@ -61,4 +61,8 @@ socketServer.on("connection", (socket) => {
     socket.broadcast.emit("f5deleteProduct", idproduct);
     socket.emit("products", initProducts());
   });
+
+  socket.on("inicializar",(msj)=> {
+    socket.emit("products", initProducts());
+  });
 });
