@@ -61,7 +61,7 @@ routerProducts.delete("/products/:pid", function (req, res) {
   try {
     const pid = req.params.pid;
     productManager.deleteProduct(pid);
-    res.status(200).send(`Product ${pid} deleted successfully`);
+    res.status(200).send(pid);
   } catch (error) {
     res.status(500).send(console.log(error));
   }

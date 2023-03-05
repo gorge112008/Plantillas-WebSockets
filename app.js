@@ -54,13 +54,11 @@ socketServer.on("connection", (socket) => {
   socket.emit("products", obtenerproductos());
 
   socket.on("addproduct", (product) => {
-    productManager.addProduct(product);
     socket.broadcast.emit("f5NewProduct", product);
   });
 
-  socket.on("ProductDeleted", (IDproduct, deletedproduct) => {
-    productManager.deleteProduct(IDproduct);
-    socket.broadcast.emit("f5deleteProduct", deletedproduct);
+  socket.on("ProductDeleted", (idproduct) => {
+    socket.broadcast.emit("f5deleteProduct", idproduct);
   });
 });
 

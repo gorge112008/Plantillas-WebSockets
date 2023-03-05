@@ -1,4 +1,5 @@
 const { notDeepEqual } = require("assert");
+const { log } = require("console");
 const fs = require("fs");
 
 class ProductManager {
@@ -9,10 +10,10 @@ class ProductManager {
    addProduct(product) {
     try {
       const arrayProducts =  this.getProducts();
+
       const DuplicatedProduct = arrayProducts.find(
         (item) => item.code == product.code
       );
-
       if (DuplicatedProduct) {
         console.error(
           "\n" +

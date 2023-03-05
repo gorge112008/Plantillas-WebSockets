@@ -20,19 +20,25 @@ socket.on("products", (producto) => {
             denyButtonText: "NO",
           }).then((result) => {
             if (result.isConfirmed) {
-              almacen.splice(almacen.indexOf(searchID), 1);
-              crearHtml();
-              Swal.fire({
-                title: "Producto Eliminado Exitosamente!",
-                text: "Producto Eliminado: " + searchID.tittle,
-                icon: "success",
-                confirmButtonText: "Aceptar",
-              });
-              socket.emit(
-                "ProductDeleted",
-                searchID.id,
-                almacen.indexOf(searchID)
-              );
+              let url = "http://localhost:8080/api/products/";
+              deleteData(url, searchID.id)
+                .then((data) => {
+                  almacen.splice(almacen.indexOf(searchID), 1); //REALIZAR CAMBIOS EN EL MISMO USUARIO
+                  crearHtml();
+                  Swal.fire({
+                    title: "Producto Eliminado Exitosamente!",
+                    text:
+                      "Producto Eliminado: " +
+                      "ID: " +
+                      data +
+                      " --> " +
+                      searchID.tittle,
+                    icon: "success",
+                    confirmButtonText: "Aceptar",
+                  });
+                  socket.emit("ProductDeleted", almacen.indexOf(searchID)); //EMITIR CAMBIOS A TODOS LOS USUARIOS
+                })
+                .catch((error) => console.log("Error:" + error));
             } else if (result.isDenied) {
               Swal.fire("ACCIÓN CANCELADA", "", "info");
               selectBtn.className = "btn";
@@ -42,11 +48,6 @@ socket.on("products", (producto) => {
       });
     });
   });
-});
-
-socket.on("f5deleteProduct", (deletedproduct) => {
-  almacen.splice(deletedproduct, 1);
-  crearHtml();
 });
 
 const form = document.querySelector("form");
@@ -103,6 +104,18 @@ function crearHtml() {
   }
 }
 
+async function deleteData(url, id) {
+  try {
+    let clave = url + id;
+    let response = await fetch(clave, {
+      method: "DELETE",
+    });
+    return response.json();
+  } catch {
+    console.log(Error);
+  }
+}
+
 async function postData(url, data) {
   try {
     let response = await fetch(url, {
@@ -127,10 +140,15 @@ socket.on("f5NewProduct", (newproducto) => {
   crearHtml();
 });
 
+socket.on("f5deleteProduct", (deleteProduct) => {
+  almacen.splice(deleteProduct, 1);
+  crearHtml();
+});
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const producto = new Producto();
-  let url= "http://localhost:8080/api/products";
+  let url = "http://localhost:8080/api/products";
   postData(url, producto)
     .then((data) => {
       if (data == null) {
@@ -143,6 +161,7 @@ form.addEventListener("submit", (e) => {
         inputCode.value = "";
         inputCode.focus();
       } else {
+        almacen.push(data);
         crearHtml();
         Swal.fire({
           title: "Producto Añadido Exitosamente!",
