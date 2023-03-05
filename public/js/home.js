@@ -38,6 +38,7 @@ socket.on("products", (producto) => {
                     confirmButtonText: "Aceptar",
                   });
                   socket.emit("ProductDeleted", almacen.indexOf(searchID)); //EMITIR CAMBIOS A TODOS LOS USUARIOS
+                  //location. reload();
                 })
                 .catch((error) => console.log("Error:" + error));
             } else if (result.isDenied) {
@@ -145,17 +146,19 @@ async function postData(url, data) {
 socket.on("f5NewProduct", (newproducto) => {
   almacen.push(newproducto);
   crearHtml();
+  //location. reload();
 });
 
 socket.on("f5deleteProduct", (deleteProduct) => {
   almacen.splice(deleteProduct, 1);
   crearHtml();
+  //location. reload();
 });
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const producto = new Producto();
-  let url = "http://"+URLdomain+"/api/products";
+  let url = "https://"+URLdomain+"/api/products";
   postData(url, producto)
     .then((data) => {
       if (data == null) {
@@ -178,6 +181,7 @@ form.addEventListener("submit", (e) => {
         });
         form.reset();
         socket.emit("addproduct", data);
+        //location. reload();
       }
     })
     .catch((error) => console.log("Error:" + error));
