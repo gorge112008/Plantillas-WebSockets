@@ -1,5 +1,6 @@
 const socket = io();
 const almacen = [];
+var URLdomain = window.location.host;
 
 socket.on("products", (producto) => {
   Object.assign(almacen, producto);
@@ -20,7 +21,7 @@ socket.on("products", (producto) => {
             denyButtonText: "NO",
           }).then((result) => {
             if (result.isConfirmed) {
-              let url = "http://localhost:8080/api/products/";
+              let url = "http://"+URLdomain+"/api/products/";
               deleteData(url, searchID.id)
                 .then((data) => {
                   almacen.splice(almacen.indexOf(searchID), 1); //REALIZAR CAMBIOS EN EL MISMO USUARIO
@@ -148,7 +149,7 @@ socket.on("f5deleteProduct", (deleteProduct) => {
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const producto = new Producto();
-  let url = "http://localhost:8080/api/products";
+  let url = "http://"+URLdomain+"/api/products";
   postData(url, producto)
     .then((data) => {
       if (data == null) {
