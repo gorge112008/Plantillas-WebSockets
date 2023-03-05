@@ -1,5 +1,3 @@
-const { notDeepEqual } = require("assert");
-const { log } = require("console");
 const fs = require("fs");
 
 class ProductManager {
@@ -10,7 +8,6 @@ class ProductManager {
    addProduct(product) {
     try {
       const arrayProducts =  this.getProducts();
-
       const DuplicatedProduct = arrayProducts.find(
         (item) => item.code == product.code
       );
@@ -127,7 +124,7 @@ class ProductManager {
   }
 }
 
-const productList = new ProductManager("./data/productos.json");
+const productList = new ProductManager("./data/products.json");
 
 module.exports = {
   productManager: productList,

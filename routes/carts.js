@@ -89,7 +89,7 @@ routerCarts.post("/carts/:cid/products/:pid", function (req, res) {
         }
       });
       fs.writeFileSync(
-        "./carrito.json",
+        "./carts.json",
         JSON.stringify(arrayProducts, null, 4)
       );
     }

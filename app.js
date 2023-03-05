@@ -5,7 +5,6 @@ const { productManager } = require("./routes/ProductManager.js");
 const { routerCarts } = require("./routes/carts");
 const { Server } = require("socket.io");
 
-
 const app = express();
 
 const port = 8080;
@@ -15,13 +14,13 @@ const httpServer = app.listen(port, () => {
 
 const socketServer = new Server(httpServer);
 
-function obtenerproductos() {
-  let productos = [];
+function initProducts() {
+  let products = [];
   let response = productManager.getProducts();
-  response.forEach((lista) => {
-    productos.push(lista);
+  response.forEach((listProducts) => {
+    products.push(listProducts);
   });
-  return productos;
+  return products;
 }
 
 app.use(express.json());
@@ -38,12 +37,13 @@ app.get("/", (req, res) => {
 });
 
 app.get("/home", (req, res) => {
-  let response = productManager.getProducts();
+  let response =  initProducts();
+  console.log(response);
   res.render("home", { response });
 });
 
 app.get("/realtimeproducts", (req, res) => {
-  let response = obtenerproductos();
+  let response = initProducts();
   res.render("realTimeProducts", { response });
 });
 
@@ -51,26 +51,15 @@ socketServer.on("connection", (socket) => {
 
   console.log("New client connected");
 
-  socket.emit("products", obtenerproductos());
+  socket.emit("products", initProducts());
 
-  socket.on("addproduct", (product) => {
-    socket.broadcast.emit("f5NewProduct", product);
+  socket.on("addproduct", (newProduct) => {
+    socket.broadcast.emit("f5NewProduct", newProduct);
+    socket.emit("products", initProducts());
   });
 
-  socket.on("ProductDeleted", (idproduct) => {
+  socket.on("deleteproduct", (idproduct) => {
     socket.broadcast.emit("f5deleteProduct", idproduct);
+    socket.emit("products", initProducts());
   });
 });
-
-//socket.broadcast.emit('broadcast','GOLA');
-/*
-  socket.broadcast.emit('broadcast','Saluda al nuevo cliente');
-  socketServer.emit('multicast','Saludar Todos');*/
-
-/*app.get ('/realtimeproducts/:pro', (req, res)=>{
-    let user=req.params.pro;
-    let response = productManager.getProducts();
-    productManager.updateProduct(2, {description: user});
-    console.log(response);
-    res.rend'er('realTimeProducts', {response});
-  })*/

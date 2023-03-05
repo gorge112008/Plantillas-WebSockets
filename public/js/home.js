@@ -1,49 +1,49 @@
 const socket = io();
-const almacen = [];
-var URLdomain = window.location.host;
+const storeProducts = [];
+let URLdomain = window.location.host;
+let protocol = window.location.protocol;
 
-socket.on("products", (producto) => {
-  Object.assign(almacen, producto);
+socket.on("products", (getProducts) => {
+  Object.assign(storeProducts, getProducts);
   crearHtml();
-  let btnsEliminar = document.querySelectorAll(".btn");
-  btnsEliminar.forEach((selectBtn) => {
+  let btnsDelete = document.querySelectorAll(".btn");
+  btnsDelete.forEach((selectBtn) => {
     selectBtn.addEventListener("click", () => {
-      almacen.forEach((searchID) => {
+      storeProducts.forEach((searchID) => {
         if (searchID.id == selectBtn.id) {
           Swal.fire({
             title:
-              "DESEA ELIMINAR EL PRODUCTO " +
+              "YOU WANT TO DELETE THE PRODUCT " +
               searchID.tittle.toUpperCase() +
               " ?",
             showDenyButton: true,
             showCancelButton: false,
-            confirmButtonText: "SI",
-            denyButtonText: "NO",
+            confirmButtonText: "YES",
+            denyButtonText: "NOT",
           }).then((result) => {
             if (result.isConfirmed) {
-              let url = "http://"+URLdomain+"/api/products/";
+              let url = protocol+"//"+URLdomain+"/api/products/";
               deleteData(url, searchID.id)
                 .then((data) => {
-                  almacen.splice(almacen.indexOf(searchID), 1); //REALIZAR CAMBIOS EN EL MISMO USUARIO
+                  storeProducts.splice(storeProducts.indexOf(searchID), 1); 
                   crearHtml();
                   Swal.fire({
-                    title: "Producto Eliminado Exitosamente!",
+                    title: "Product Removed Successfully!!!",
                     text:
-                      "Producto Eliminado: " +
+                      "Product Removed: " +
                       "ID: " +
                       data +
                       " --> " +
                       searchID.tittle,
                     icon: "success",
-                    confirmButtonText: "Aceptar",
+                    confirmButtonText: "Accept",
                   });
-                  socket.emit("ProductDeleted", almacen.indexOf(searchID)); //EMITIR CAMBIOS A TODOS LOS USUARIOS
-                  //location. reload();
+                  socket.emit("deleteproduct", storeProducts.indexOf(searchID)); 
                 })
                 .catch((error) => console.log("Error:" + error));
             } else if (result.isDenied) {
-              Swal.fire("ACCIÓN CANCELADA", "", "info");
-              selectBtn.className = "btn";
+              Swal.fire("ACTION CANCELED", "", "info");
+              //selectBtn.className = "btn";
             }
           });
         }
@@ -60,9 +60,9 @@ const inputTittle = document.querySelector("#tittle"),
   inputPrice = document.querySelector("#price"),
   inputStock = document.querySelector("#stock"),
   inputThumbnail = document.querySelector("#thumbnail"),
-  contenedor = document.querySelector("#contenedor");
+  contain = document.querySelector("#contain");
 
-class Producto {
+class NewProduct {
   constructor() {
     this.tittle = inputTittle.value;
     this.description = inputDescription.value;
@@ -71,45 +71,41 @@ class Producto {
     this.stock = +inputStock.value;
     this.category = "Food";
     this.price = +inputPrice.value;
-    this.thumbnail = inputThumbnail.value;
+    this.thumbnail = this.thumbnail? inputThumbnail.value : "https://finvero.com/assets/img/shoppers/products/Not_found.png";
   }
 }
 
 //funciones
 function crearHtml() {
-  contenedor.innerHTML = "";
+  contain.innerHTML = "";
   let html;
-  for (const producto of almacen) {
-    if (!producto.thumbnail) {
-      producto.thumbnail =
-        "https://finvero.com/assets/img/shoppers/products/Not_found.png ";
-    }
+  for (const product of storeProducts) {
     html = `<div class="col s4 m3">
  <div class="card">
 <div class="card-image">
- <img class="responsive-img" src=${producto.thumbnail} />
- <span class="card-title">${producto.tittle}</span>
+ <img class="responsive-img" src=${product.thumbnail} />
+ <span class="card-title">${product.tittle}</span>
 </div>
 <div class="card-content">
  <b>
-   ${producto.description}
+   ${product.description}
  </b>
- <p>$${producto.price}</p>
- <b>Code: <b class="code">${producto.code}</b></b>
+ <p>$${product.price}</p>
+ <b>Code: <b class="code">${product.code}</b></b>
 </div>
 <div class="card-action">
- <input type= "button" id=${producto.id} class="btn" value="Eliminar" >
+ <input type= "button" id=${product.id} class="btn" value="Delete" >
 </div>
 </div>
 </div>`;
-    contenedor.innerHTML += html;
+    contain.innerHTML += html;
   }
 }
 
 async function deleteData(url, id) {
   try {
-    let clave = url + id;
-    let response = await fetch(clave, {
+    let key = url + id;
+    let response = await fetch(key, {
       method: "DELETE",
       "Access-Control-Allow-Origin" : "*", 
       "Access-Control-Allow-Credentials" : true ,
@@ -143,45 +139,42 @@ async function postData(url, data) {
   }
 }
 
-socket.on("f5NewProduct", (newproducto) => {
-  almacen.push(newproducto);
+socket.on("f5NewProduct", (newProduct) => {
+  storeProducts.push(newProduct);
   crearHtml();
-  //location. reload();
 });
 
 socket.on("f5deleteProduct", (deleteProduct) => {
-  almacen.splice(deleteProduct, 1);
+  storeProducts.splice(deleteProduct, 1);
   crearHtml();
-  //location. reload();
 });
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  const producto = new Producto();
-  let url = "https://"+URLdomain+"/api/products";
-  postData(url, producto)
+  const product = new NewProduct();
+  let url = protocol+"//"+URLdomain+"/api/products";
+  postData(url, product)
     .then((data) => {
       if (data == null) {
         Swal.fire({
-          title: "Error>> Codigo Repetido",
-          text: "Por favor ingresar un nuevo codigo",
+          title: "Error>> Repeated Code f",
+          text: "Please enter a new code",
           icon: "error",
-          confirmButtonText: "Aceptar",
+          confirmButtonText: "Accept",
         });
         inputCode.value = "";
         inputCode.focus();
       } else {
-        almacen.push(data);
+        storeProducts.push(data);
         crearHtml();
         Swal.fire({
-          title: "Producto Añadido Exitosamente!",
-          text: "Producto Registrado: " + data.tittle,
+          title: "Product Added Successfully!",
+          text: "Registered Product: " + data.tittle,
           icon: "success",
-          confirmButtonText: "Aceptar",
+          confirmButtonText: "Accept",
         });
         form.reset();
         socket.emit("addproduct", data);
-        //location. reload();
       }
     })
     .catch((error) => console.log("Error:" + error));
