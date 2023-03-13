@@ -1,86 +1,208 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Raleway', sans-serif;
-   
-}
-img{
-    width: 200px;
-    height: 200px !important;
-    object-fit: cover;
-}
-.card-title{
-    opacity: 0.8;
-    color: black !important;
-    background-color: #9966CC;
-    text-align: center; 
-    line-height: 3px;
-    font-size: 150% !important;
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
 }
 
-.tittle-index{
-    border: solid red 3px;
-    text-align: center;
-    margin-bottom: 100px;
+/*CSS ROUTES*/
+.contain-return {
+  margin-bottom: 20px;
 }
 
-#Static{
-    height: 100px;
-    background-color: aquamarine;
-    color: black;
-    display: block;
-    position:static;
-  margin:auto;
-  top: 0;bottom:0;left:0;right:0;
+#return {
+  background-color: greenyellow;
+  color: black;
+  border-radius: 25px;
+  border: solid 3px black;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  transition: all 500ms ease;
 }
-#Static:hover{
-    border:solid black 2px;
-   color: blue;
+#return:hover {
+  color: black;
+  width: 8em;
+  cursor: pointer;
 }
-#Dinamic{
-    height: 100px;
-    background-color:pink;
-    color: black;
-    display: block;
-    position:static;
-  margin:auto;
-  top: 0;bottom:0;left:0;right:0;
-}
-#Dinamic:hover{
-    border:solid black 2px;
-   color: blue;
-}
-.contain-return{
-    margin-bottom: 20px;
-}
-#return{
-    background-color:royalblue;
-    color: black;
-    border-radius: 25px;
-    border: solid 2px black;
-    display: block;
-    position:static;
-  margin:auto;
-  top: 0;bottom:0;left:0;right:0;
 
+/*CSS INDEX*/
+.tittle-index {
+  border: solid red 3px;
+  text-align: center;
+  margin-bottom: 100px;
 }
-#return:hover{
-   color: white;
+
+#Static {
+  height: 100px;
+  background-color: aquamarine;
+  color: black;
+  display: block;
+  position: static;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
+#Static:hover {
+  border: solid black 2px;
+  color: blue;
+}
+
+#Dinamic {
+  height: 100px;
+  background-color: pink;
+  color: black;
+  display: block;
+  position: static;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+#Dinamic:hover {
+  border: solid black 2px;
+  color: blue;
+}
+
+/*CSS CONTENIDO DINAMICO*/
 .btnSave {
-    white-space: normal;
-    background: rgb(54, 156, 127);
-    border: none;
-    color: #ffffff;
-    font-family: "Times New Roman", Times, serif;
-    font-size: 20px;
-    width: 170px;
-    padding: 8px;
+  white-space: normal;
+  background: rgb(54, 156, 127);
+  border: none;
+  color: #ffffff;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 20px;
+  width: 170px;
+  padding: 8px;
+}
+.btnSave:hover {
+  color: #bbb;
+  cursor: pointer;
+}
+
+.responsive-img {
+  object-fit: cover;
+  /*border: solid black 5px;*/
+  height: 100% !important;
+  position: relative;
+}
+.card-title {
+  opacity: 0.8;
+  color: black !important;
+  background-color: #9966cc;
+  height: auto;
+  text-align: center;
+  white-space:nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  transition: all 500ms ease;
+}
+
+.card-title:hover { 
+  cursor: pointer;
+  width: 100%;
+  line-height: auto;
+  white-space:normal;
+  word-wrap: break-word;
+}
+
+/*CSS CONTENIDO ESTATICO*/
+
+#contain {
+  /*border: solid red 5px;*/
+  display: grid;
+  flex-wrap: wrap;
+  grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+  grid-template-rows: repeat(auto-fill,1fr);
+  grid-auto-flow: dense;
+  grid-auto-rows: 1fr;
+  grid-auto-columns: 1fr;
+  grid-gap:10px;
+}
+
+.card {
+  /*border: green solid 5px;*/
+  height:auto;
+}
+
+.card-image {
+  /*border: greenyellow solid 5px;*/
+  height: 50%;
+}
+.card-content {
+  /*border: orange solid 5px;*/
+  display: block;
+  width: auto;
+  text-align: center;
+  font-size: large;
+}
+
+.card-content .card-description{
+  overflow:hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: block;
+  position: relative;
+  top: 50%;
+  cursor: pointer;
+}
+
+.card-content .card-description:hover{
+  overflow:hidden;
+  white-space:normal;
+  word-wrap: break-word;
+}
+
+.card-action {
+  /*border: blue solid 5px;*/
+  display: flex;
+  height: auto;
+}
+
+.card-action .btn{
+ /* border: blue solid 5px;*/
+
+  width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  /*.card {
+    border: red solid 5px;
+  }*/
+  #contain {
+    grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+    grid-template-rows: repeat(auto-fill,1fr);
+    grid-auto-flow: dense;
+    grid-auto-rows: 1fr;
+    grid-auto-columns: 1fr;
+    grid-column-gap:5px;
   }
-  .btnSave:hover {
-    color: #bbb;
-    cursor: pointer;
+}
+
+@media only screen and (min-width: 992px) {
+  /*.card {
+    border: yellow solid 5px;
+  }*/
+
+  #contain {
+    grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+    grid-template-rows: repeat(auto-fill,1fr);
+    grid-auto-flow: dense;
+    grid-auto-rows: 1fr;
+    grid-auto-columns: 1fr;
+    grid-gap:5px;
   }
-  
+}
+/*
+#dinamic-contain {
+  border: solid rosybrown 5px;
+}*/

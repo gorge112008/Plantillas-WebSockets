@@ -1,31 +1,29 @@
 <h4>*Productos Disponibles:</h4>
 <div class="container-fluid">
   <div class="row">
-    <div class="col m14">
-      <div class="col s4 m12" id="contain">
+    <div class="col m12" id="static-contain">
+      <div class="col m12" id="contain">
         {{#each response}}
-          <div class="col s4 m4">
             <div class="card">
               <div class="card-image">
                 <img class="responsive-img" src={{thumbnail}} />
                 <span class="card-title">{{tittle}}</span>
               </div>
-              <div class="card-content">
-                <b>
+              <div class="card-content" >
+                <b class="card-description">
                   {{description}}
                 </b>
-                <p>{{price}}</p>
+                <p>S/.{{price}}</p>
                 <b>Code: <b class="code">{{code}}</b></b>
               </div>
             </div>
-          </div>
         {{/each}}
       </div>
     </div>
   </div>
 </div>
 <div class="contain-return">
-    <input type="button" id="return" class="btnSave" value="INDEX" />
+    <input type="button" id="return" class="btnSave" value="<= RETURN" />
   </div>
 <script
   src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.24/dist/sweetalert2.all.min.js"

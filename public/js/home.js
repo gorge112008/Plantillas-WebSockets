@@ -70,7 +70,7 @@ class NewProduct {
     this.stock = +inputStock.value;
     this.category = "Food";
     this.price = +inputPrice.value;
-    this.thumbnail = this.thumbnail? inputThumbnail.value : "https://finvero.com/assets/img/shoppers/products/Not_found.png";
+    this.thumbnail = this.thumbnail? inputThumbnail.value : "https://energiaypotencia.com/img/imagen-no-disponible.jpg";
   }
 }
 
@@ -79,14 +79,13 @@ function crearHtml() {
   contain.innerHTML = "";
   let html;
   for (const product of storeProducts) {
-    html = `<div class="col s4 m3">
- <div class="card">
+    html = `<div class="card">
 <div class="card-image">
  <img class="responsive-img" src=${product.thumbnail} />
  <span class="card-title">${product.tittle}</span>
 </div>
 <div class="card-content">
- <b>
+ <b class="card-description">
    ${product.description}
  </b>
  <p>$${product.price}</p>
@@ -94,7 +93,6 @@ function crearHtml() {
 </div>
 <div class="card-action">
  <input type= "button" id=${product.id} class="btn" value="Delete" >
-</div>
 </div>
 </div>`;
     contain.innerHTML += html;

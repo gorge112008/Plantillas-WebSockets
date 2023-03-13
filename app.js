@@ -43,7 +43,7 @@ app.get("/home", (req, res) => {
 
 app.get("/realtimeproducts", (req, res) => {
   let response = initProducts();
-  res.render("realTimeProducts", { response });
+  res.render("realtimeproducts", { response });
 });
 
 socketServer.on("connection", (socket) => {
